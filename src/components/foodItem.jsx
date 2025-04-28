@@ -1,22 +1,14 @@
 import React from 'react'
 
-function FoodItem({image, price, stock}) {
-  console.log('FoodItem', image)
+function FoodItem({comida, addOrder}) {
   return (
-    <div>
+<div className='food-item'>
+      <div><span>{comida.img}</span></div>
+      <div><span>${comida.price}</span></div>
       <div>
-        <span>{image}</span>
+        <button onClick={() => addOrder({...comida})}>Add to order</button> {/*Copio el objeto comida para que no me mande la referencia y haya pedo con los estados*/}
       </div>
-      <div>
-        <span>{price}</span>
-      </div>
-      <div>
-        {stock}
-      </div>
-      <div>
-        <button>Add to order</button>
-      </div>
-    </div>
+</div>
   )
 }
 

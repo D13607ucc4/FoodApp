@@ -5,25 +5,33 @@ const comidas = [
   {
     img: '🍣', // sushi
     price: 150,
-    stock: 5
+    quantity: 0,
   },
   {
     img: '🍕', // pizza
     price: 180,
-    stock: 3
+    quantity: 0,
   },
   {
     img: '🍔', //burger
     price: 120,
-    stock: 7
+    quantity: 0,
+  },
+  {
+    img: '🍨', //ice cream
+    price: 30,
+    quantity: 0,
   }
 ];
 
-function FoodContainer() {
+function FoodContainer({addOrder}) {
   return (
     <>
-      {comidas.map((comida) => 
-         <FoodItem image={comida.img} price={comida.price} stock={comida.stock}/>
+      {comidas.map((comida, index) => 
+         <FoodItem 
+         key={index}
+         comida={comida}
+         addOrder={addOrder}/> 
       )}
     </>
   )
