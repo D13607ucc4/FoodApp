@@ -2,6 +2,7 @@ body {
   background-color: #f7f7f7;
   margin: 0;
   font-family: "Arial", sans-serif;
+  margin-right: 50px;
 }
 
 .container {
@@ -19,8 +20,4 @@ body {
   font-weight: bold;
   font-size: 24px;
   text-align: center;
-}
-
-body {
-  margin-right: 50px;
 }
