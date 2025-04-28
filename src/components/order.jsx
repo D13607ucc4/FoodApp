@@ -1,13 +1,17 @@
-import React from 'react'
+import React from "react";
+import "./order.css";
 
-function Order({item, index, removeOrder }) {
+function Order({ item, index, removeOrder, removeOneOrder }) {
   return (
-  <div key={index} className="order-item">
-    <span>{item.img} x {item.quantity}</span>
-    <span>${item.price * item.quantity}</span>
-    <button onClick={() => removeOrder(index)}>❌</button>
-</div>
-  )
+    <div key={index} className="order-item">
+      <span>
+        {item.img} x {item.quantity}
+      </span>
+      <span>${item.price * item.quantity}</span>
+      <button onClick={() => removeOneOrder(index)}>➖</button>
+      <button onClick={() => removeOrder(index)}>❌</button>
+    </div>
+  );
 }
 
-export default Order
+export default Order;
