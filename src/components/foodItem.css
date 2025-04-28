@@ -2,8 +2,8 @@
   background-color: #fff;
   border: 2px solid #d1d1d1;
   border-radius: 10px;
-  width: 140px;
-  height: 170px;
+  width: 250px;
+  height: 280px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -31,5 +31,5 @@
 }
 
 .food-icon {
-  font-size: 60px;
+  font-size: 100px;
 }
