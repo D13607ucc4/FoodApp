@@ -1,3 +1,6 @@
+//Para correr npm install vite --save-dev
+//npm run dev
+
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
