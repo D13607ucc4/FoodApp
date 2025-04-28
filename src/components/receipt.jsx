@@ -2,7 +2,7 @@ import React from "react";
 import Order from "./order";
 import "./receipt.css";
 
-function Receipt({ orders, removeOrder, removeOneOrder }) {
+function Receipt({ orders, removeOrder, removeOneOrder, addOneOrder }) {
   const total = orders.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
@@ -18,6 +18,7 @@ function Receipt({ orders, removeOrder, removeOneOrder }) {
             index={index}
             removeOrder={removeOrder}
             removeOneOrder={removeOneOrder}
+            addOneOrder={addOneOrder}
           />
         ))}
       </div>

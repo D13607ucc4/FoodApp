@@ -1,9 +1,10 @@
 import React from "react";
 import FoodItem from "./foodItem";
 import "./foodContainer.css";
+import { useState } from "react";
 
 const comidas = [
-  { img: "🍔", name: "Hamburguesa", price: 157, stock: 4 },
+  { img: "🍔", name: "Hamburguesa", price: 157, stock: 0 },
   { img: "🍕", name: "Pizza", price: 189, stock: 9 },
   { img: "🍣", name: "Sushi", price: 132, stock: 6 },
   { img: "🌮", name: "Taco", price: 175, stock: 2 },
@@ -16,10 +17,19 @@ const comidas = [
 ];
 
 function FoodContainer({ addOrder }) {
+  const [stock, setStock] = useState([]);
+
+  function handleStock({ comidas }) {
+    if (comidas.stock) {
+      addOrder({ ...comidas })
+      setStock( comidas.stock -= 1 )
+    }
+  }
+
   return (
     <>
       {comidas.map((comida, index) => (
-        <FoodItem key={index} comida={comida} addOrder={addOrder} />
+        <FoodItem key={index} comida={comida} addOrder={addOrder} stock={stock} removeStock={handleStock}/>
       ))}
     </>
   );

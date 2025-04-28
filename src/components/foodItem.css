@@ -26,6 +26,15 @@
   cursor: pointer;
 }
 
+.food-item button:disabled {
+  background-color: grey;
+}
+
+.food-item button:hover:disabled {
+  cursor: not-allowed;
+  background-color: grey;
+}
+
 .food-item button:hover {
   background-color: #45a049;
 }
