@@ -1,23 +1,24 @@
-import React from 'react'
+import React from "react";
 
-function FoodItem({image, price, stock}) {
-  console.log('FoodItem', image)
+function FoodItem({ image, name, price, stock }) {
+  console.log("FoodItem", image);
   return (
     <div>
       <div>
         <span>{image}</span>
       </div>
       <div>
-        <span>{price}</span>
+        <span>{name}</span>
       </div>
       <div>
-        {stock}
+        <span>${price}</span>
       </div>
+      <div>{stock} left</div>
       <div>
         <button>Add to order</button>
       </div>
     </div>
-  )
+  );
 }
 
-export default FoodItem
+export default FoodItem;
