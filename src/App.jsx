@@ -20,7 +20,7 @@ const comidaArreglo = [
 function App() {
   const [orders, setOrders] = useState([]); //Creo una variable de estado orders, que empieza como un array vacío.
   // const [stock, setStock] = useState([]);
-  //const [comidas, setComidas] = useState(comidaArreglo);
+  const [comidas, setComidas] = useState(comidaArreglo);
   // Orders contendrá los pedidos que se vayan haciendo. setOrders se usa para actualizar el estado de orders.
 
   //Función que añade un item al array de orders. Item es el objeto que contiene la información del pedido.
@@ -46,7 +46,6 @@ function App() {
   };
 
   //MIERCOLES
-
   // const removeStock = (item) => {
   //   const newComidas = [...comidas];
   //   item.stock = item.stock - 1;
