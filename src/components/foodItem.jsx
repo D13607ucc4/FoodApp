@@ -2,6 +2,7 @@ import React from "react";
 import "./foodItem.css";
 
 function FoodItem({ comida, addOrder }) {
+  
   return (
     <div className="food-item">
       <div>
