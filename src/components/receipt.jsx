@@ -19,6 +19,7 @@ function Receipt({ orders, removeOrder, removeOneOrder, addOneOrder }) {
             removeOrder={removeOrder}
             removeOneOrder={removeOneOrder}
             addOneOrder={addOneOrder}
+            
           />
         ))}
       </div>
@@ -28,3 +29,6 @@ function Receipt({ orders, removeOrder, removeOneOrder, addOneOrder }) {
 }
 
 export default Receipt;
+
+
+//comidaCantidad={comidas.find((element) => item.id === element.id).stock}

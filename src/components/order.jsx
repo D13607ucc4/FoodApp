@@ -9,7 +9,7 @@ function Order({ item, index, removeOrder, removeOneOrder, addOneOrder }) {
       </span>
       <span>${item.price * item.quantity}</span>
       <button onClick={() => removeOneOrder(index)}>➖</button>
-      <button onClick={() => addOneOrder(index)}>➕</button>
+      <button onClick={() => addOneOrder(index)} >➕</button>
       <button onClick={() => removeOrder(index)}>❌</button>
     </div>
   );

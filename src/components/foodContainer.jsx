@@ -2,20 +2,20 @@ import React from "react";
 import FoodItem from "./foodItem";
 import "./foodContainer.css";
 
-function FoodContainer({ addOrder, comidas }) {
-  // const [stock, setStock] = useState();
-
-  // function handleStock({ comidas }) {
-  //   if (comidas.stock) {
-  //     addOrder({ ...comidas });
-  //     setStock((comidas.stock -= 1));
-  //   }
-  // }
+function FoodContainer({ addOrder, comidas, orders }) {
 
   return (
     <>
-      {comidas.map((comida, index) => (
-        <FoodItem key={index} comida={comida} addOrder={addOrder} />
+      {comidas.map((comida) => (
+        <FoodItem
+          key={comida.id}
+          comida={comida}
+          addOrder={addOrder}
+          orderCantidad={
+            comida.stock -
+            (orders.find((element) => element.id === comida.id)?.quantity ?? 0)
+          }
+        />
       ))}
     </>
   );

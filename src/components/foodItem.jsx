@@ -1,10 +1,9 @@
 import React from "react";
 import "./foodItem.css";
 
-function FoodItem({ comida, addOrder }) {
-  
+function FoodItem({ comida, addOrder, orderCantidad }) {
   return (
-    <div className="food-item">
+    <button className="food-item" onClick={() => addOrder(comida)} disabled={orderCantidad === 0}>
       <div>
         <span className="food-icon">{comida.img}</span>
       </div>
@@ -15,19 +14,16 @@ function FoodItem({ comida, addOrder }) {
         <span>${comida.price}</span>
       </div>
       <div>
-        {
-          <span>
-            {comida.stock === 0 ? "No Stock" : `${comida.stock} left`}
-          </span>
-        }
+        {orderCantidad === 0 ? (
+          <span>No Stock</span>
+        ) : (
+          <span>{orderCantidad} left</span>
+        )}
       </div>
       <div className="food-bottom">
-        <button onClick={() => addOrder(comida)} disabled={comida.stock === 0}>
-          Add to order
-        </button>{" "}
         {/*Copio el objeto comida para que no me mande la referencia y haya pedo con los estados*/}
       </div>
-    </div>
+    </button>
   );
 }
 
