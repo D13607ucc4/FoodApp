@@ -13,30 +13,13 @@
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 }
 
+.food-item:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
 .food-item span:not(.food-icon) {
   font-size: 20px;
-}
-
-.food-item button {
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.food-item button:disabled {
-  background-color: grey;
-}
-
-.food-item button:hover:disabled {
-  cursor: not-allowed;
-  background-color: grey;
-}
-
-.food-item button:hover {
-  background-color: #45a049;
 }
 
 .food-icon {
