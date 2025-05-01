@@ -2,7 +2,7 @@ import React from "react";
 import Order from "./order";
 import "./receipt.css";
 
-function Receipt({ orders, removeOrder, removeOneOrder, addOneOrder }) {
+function Receipt({ orders, removeOrder, removeOneOrder, addOrder, comidas }) {
   const total = orders.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
@@ -11,15 +11,15 @@ function Receipt({ orders, removeOrder, removeOneOrder, addOneOrder }) {
     <div>
       <h2>Receipt</h2>
       <div className="order-container">
-        {orders.map((item, index) => (
+        {orders.map((order, index) => (
           <Order
             key={index}
-            item={item}
+            order={order}
             index={index}
             removeOrder={removeOrder}
             removeOneOrder={removeOneOrder}
-            addOneOrder={addOneOrder}
-            
+            addOrder={addOrder}
+            comida={comidas.find((element) => element.id === order.id)}
           />
         ))}
       </div>
@@ -29,6 +29,3 @@ function Receipt({ orders, removeOrder, removeOneOrder, addOneOrder }) {
 }
 
 export default Receipt;
-
-
-//comidaCantidad={comidas.find((element) => item.id === element.id).stock}

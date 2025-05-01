@@ -26,23 +26,28 @@ function App() {
 
   //Función que añade un item al array de orders. Item es el objeto que contiene la información del pedido.
   const addOrder = (item) => {
-    setOrders((prevOrders) => {
-      const existingOrderIndex = prevOrders.findIndex(
-        (order) => order.id === item.id
-      ); //Busca si ya existe un pedido con el mismo img que el que quiero agregar.
-      if (existingOrderIndex !== -1) {
-        //Si ya existe actualiza la cantidad del pedido existente
-        return prevOrders.map((order, index) => {
-          if (index === existingOrderIndex) {
-            return { ...order, quantity: order.quantity + 1 }; //Copio el objeto order y le sumo 1 a la cantidad. Esto no muta el estado porque crea un nuevo objeto.
-          }
-          return order; //El resto de los objetos los dejo igual.
-        });
-      } else {
-        //Si no existe agrego como nuevo con quantity = 1
-        return [...prevOrders, { ...item, quantity: 1 }];
-      }
-    });
+    const orderQuantity =
+      orders.find((elemento) => elemento.id === item.id)?.quantity ?? 0;
+    console.log(orderQuantity);
+    if (item.stock - orderQuantity > 0) {
+      setOrders((prevOrders) => {
+        const existingOrderIndex = prevOrders.findIndex(
+          (order) => order.id === item.id
+        ); //Busca si ya existe un pedido con el mismo img que el que quiero agregar.
+        if (existingOrderIndex !== -1) {
+          //Si ya existe actualiza la cantidad del pedido existente
+          return prevOrders.map((order, index) => {
+            if (index === existingOrderIndex) {
+              return { ...order, quantity: order.quantity + 1 }; //Copio el objeto order y le sumo 1 a la cantidad. Esto no muta el estado porque crea un nuevo objeto.
+            }
+            return order; //El resto de los objetos los dejo igual.
+          });
+        } else {
+          //Si no existe agrego como nuevo con quantity = 1
+          return [...prevOrders, { ...item, quantity: 1 }];
+        }
+      });
+    }
   };
 
   const removeOrder = (index) => {
@@ -66,13 +71,6 @@ function App() {
     setOrders(newOrders);
   };
 
-  const addOneOrder = (index) => {
-    const newOrders = [...orders];
-    const item = newOrders[index];
-    item.quantity++;
-    setOrders(newOrders);
-  };
-
   return (
     <>
       <Header />
@@ -87,10 +85,11 @@ function App() {
         </div>
         <div className="receipt-container">
           <Receipt
+            comidas={comidas}
             orders={orders}
             removeOrder={removeOrder}
             removeOneOrder={removeOneOrder}
-            addOneOrder={addOneOrder}
+            addOrder={addOrder}
           />{" "}
           {/*Componente que contiene el ticket. Se le pasa la variable orders como prop para que pueda mostrar los pedidos y la función removeOrder para que pueda eliminar pedidos.*/}
         </div>
