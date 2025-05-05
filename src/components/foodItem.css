@@ -1,0 +1,27 @@
+.food-item {
+  background-color: #fff;
+  border: 2px solid #d1d1d1;
+  border-radius: 10px;
+  width: 250px;
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.food-item:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.food-item span:not(.food-icon) {
+  font-size: 20px;
+}
+
+.food-icon {
+  font-size: 100px;
+}

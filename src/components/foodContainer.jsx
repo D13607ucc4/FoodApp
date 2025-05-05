@@ -1,40 +1,24 @@
-import React from 'react'
-import FoodItem from "./foodItem"
+import React from "react";
+import FoodItem from "./foodItem";
+import "./foodContainer.css";
 
-const comidas = [
-  {
-    img: '🍣', // sushi
-    price: 150,
-    quantity: 0,
-  },
-  {
-    img: '🍕', // pizza
-    price: 180,
-    quantity: 0,
-  },
-  {
-    img: '🍔', //burger
-    price: 120,
-    quantity: 0,
-  },
-  {
-    img: '🍨', //ice cream
-    price: 30,
-    quantity: 0,
-  }
-];
+function FoodContainer({ addOrder, comidas, orders }) {
 
-function FoodContainer({addOrder}) {
   return (
     <>
-      {comidas.map((comida, index) => 
-         <FoodItem 
-         key={index}
-         comida={comida}
-         addOrder={addOrder}/> 
-      )}
+      {comidas.map((comida) => (
+        <FoodItem
+          key={comida.id}
+          comida={comida}
+          addOrder={addOrder}
+          orderCantidad={
+            comida.stock -
+            (orders.find((element) => element.id === comida.id)?.quantity ?? 0)
+          }
+        />
+      ))}
     </>
-  )
+  );
 }
 
-export default FoodContainer
+export default FoodContainer;

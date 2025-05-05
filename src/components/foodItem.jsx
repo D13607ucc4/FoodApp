@@ -1,15 +1,30 @@
-import React from 'react'
+import React from "react";
+import "./foodItem.css";
 
-function FoodItem({comida, addOrder}) {
+function FoodItem({ comida, addOrder, orderCantidad }) {
   return (
-<div className='food-item'>
-      <div><span>{comida.img}</span></div>
-      <div><span>${comida.price}</span></div>
+    <button className="food-item" onClick={() => addOrder(comida)} disabled={orderCantidad === 0}>
       <div>
-        <button onClick={() => addOrder({...comida})}>Add to order</button> {/*Copio el objeto comida para que no me mande la referencia y haya pedo con los estados*/}
+        <span className="food-icon">{comida.img}</span>
       </div>
-</div>
-  )
+      <div>
+        <span>{comida.name}</span>
+      </div>
+      <div>
+        <span>${comida.price}</span>
+      </div>
+      <div>
+        {orderCantidad === 0 ? (
+          <span>No Stock</span>
+        ) : (
+          <span>{orderCantidad} left</span>
+        )}
+      </div>
+      <div className="food-bottom">
+        {/*Copio el objeto comida para que no me mande la referencia y haya pedo con los estados*/}
+      </div>
+    </button>
+  );
 }
 
-export default FoodItem
+export default FoodItem;
