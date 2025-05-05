@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Receipt from "./components/receipt";
 import FoodContainer from "./components/foodContainer";
 import Header from "./components/header";
 
+/*
 const comidas = [
   { id: "1", img: "🍔", name: "Hamburguesa", price: 157, stock: 0 },
   { id: "2", img: "🍕", name: "Pizza", price: 189, stock: 9 },
@@ -16,11 +17,26 @@ const comidas = [
   { id: "9", img: "🥞", name: "Panqueques", price: 160, stock: 8 },
   { id: "10", img: "🍟", name: "Papas fritas", price: 116, stock: 6 }
 ];
+ */
 
 function App() {
   const [orders, setOrders] = useState([]); //Creo una variable de estado orders, que empieza como un array vacío.
   // const [stock, setStock] = useState([]);
-  //const [comidas, setComidas] = useState(comidaArreglo);
+  const [comidas, setComidas] = useState([]);
+
+  const fetchComidas = () => {
+    fetch("http://localhost:3000/comidas")
+      .then(res => {
+        if (!res.ok) throw new Error("Error al obtener comidas");
+        return res.json();
+      })
+      .then(data => setComidas(data))
+      .catch(err => console.error("Error al cargar comidas:", err));
+  };
+
+  useEffect(() => {
+    fetchComidas();
+  }, []);
 
   // Orders contendrá los pedidos que se vayan haciendo. setOrders se usa para actualizar el estado de orders.
 
@@ -71,6 +87,29 @@ function App() {
     setOrders(newOrders);
   };
 
+  const finalizarCompra = () => {
+    const updates = orders.map(order => {
+      const comida = comidas.find(c => c.id === order.id);
+      const nuevoStock = comida.stock - order.quantity;
+  
+      return fetch(`http://localhost:3000/comidas/${order.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ stock: nuevoStock }),
+      });
+    });
+  
+    Promise.all(updates)
+    .then(() => {
+      fetchComidas(); 
+      setOrders([]);
+    })
+    .catch(err => {
+      console.error("Error al finalizar compra:", err);
+    });
+  };
+  
+
   return (
     <>
       <Header />
@@ -90,6 +129,7 @@ function App() {
             removeOrder={removeOrder}
             removeOneOrder={removeOneOrder}
             addOrder={addOrder}
+            finalizarCompra={finalizarCompra}
           />{" "}
           {/*Componente que contiene el ticket. Se le pasa la variable orders como prop para que pueda mostrar los pedidos y la función removeOrder para que pueda eliminar pedidos.*/}
         </div>
