@@ -1,9 +1,12 @@
-import React from "react";
 import "./foodItem.css";
 
 function FoodItem({ comida, addOrder, orderCantidad }) {
   return (
-    <button className="food-item" onClick={() => addOrder(comida)} disabled={orderCantidad === 0}>
+    <button
+      className="food-item"
+      onClick={() => addOrder(comida)}
+      disabled={orderCantidad === 0}
+    >
       <div>
         <span className="food-icon">{comida.img}</span>
       </div>

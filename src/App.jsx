@@ -3,6 +3,7 @@ import "./App.css";
 import Receipt from "./components/receipt";
 import FoodContainer from "./components/foodContainer";
 import Header from "./components/header";
+import { useTheme } from "./context/ThemeContext";
 
 /*
 const comidas = [
@@ -23,15 +24,16 @@ function App() {
   const [orders, setOrders] = useState([]); //Creo una variable de estado orders, que empieza como un array vacío.
   // const [stock, setStock] = useState([]);
   const [comidas, setComidas] = useState([]);
+  const { darkMode, toggleTheme } = useTheme();
 
   const fetchComidas = () => {
     fetch("http://localhost:3000/comidas")
-      .then(res => {
+      .then((res) => {
         if (!res.ok) throw new Error("Error al obtener comidas");
         return res.json();
       })
-      .then(data => setComidas(data))
-      .catch(err => console.error("Error al cargar comidas:", err));
+      .then((data) => setComidas(data))
+      .catch((err) => console.error("Error al cargar comidas:", err));
   };
 
   useEffect(() => {
@@ -88,50 +90,54 @@ function App() {
   };
 
   const finalizarCompra = () => {
-    const updates = orders.map(order => {
-      const comida = comidas.find(c => c.id === order.id);
+    const updates = orders.map((order) => {
+      const comida = comidas.find((c) => c.id === order.id);
       const nuevoStock = comida.stock - order.quantity;
-  
+
       return fetch(`http://localhost:3000/comidas/${order.id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ stock: nuevoStock }),
+        body: JSON.stringify({ stock: nuevoStock })
       });
     });
-  
+
     Promise.all(updates)
-    .then(() => {
-      fetchComidas(); 
-      setOrders([]);
-    })
-    .catch(err => {
-      console.error("Error al finalizar compra:", err);
-    });
+      .then(() => {
+        fetchComidas();
+        setOrders([]);
+      })
+      .catch((err) => {
+        console.error("Error al finalizar compra:", err);
+      });
   };
-  
 
   return (
     <>
-      <Header />
-      <div className="container">
-        <div className="food-container">
-          <FoodContainer
-            addOrder={addOrder}
-            comidas={comidas}
-            orders={orders}
-          />{" "}
-          {/*Componente que contiene la lista de comidas. Se le pasa la función addOrder como prop para que pueda añadir pedidos.*/}
-        </div>
-        <div className="receipt-container">
-          <Receipt
-            comidas={comidas}
-            orders={orders}
-            removeOrder={removeOrder}
-            removeOneOrder={removeOneOrder}
-            addOrder={addOrder}
-            finalizarCompra={finalizarCompra}
-          />{" "}
-          {/*Componente que contiene el ticket. Se le pasa la variable orders como prop para que pueda mostrar los pedidos y la función removeOrder para que pueda eliminar pedidos.*/}
+      <div className={darkMode ? "dark-mode" : "light-mode"}>
+        <button onClick={toggleTheme}>
+          {darkMode ? "Light Mode ☀️" : "Dark Mode 🌙"}
+        </button>
+        <Header />
+        <div className="container">
+          <div className="food-container">
+            <FoodContainer
+              addOrder={addOrder}
+              comidas={comidas}
+              orders={orders}
+            />{" "}
+            {/*Componente que contiene la lista de comidas. Se le pasa la función addOrder como prop para que pueda añadir pedidos.*/}
+          </div>
+          <div className="receipt-container">
+            <Receipt
+              comidas={comidas}
+              orders={orders}
+              removeOrder={removeOrder}
+              removeOneOrder={removeOneOrder}
+              addOrder={addOrder}
+              finalizarCompra={finalizarCompra}
+            />{" "}
+            {/*Componente que contiene el ticket. Se le pasa la variable orders como prop para que pueda mostrar los pedidos y la función removeOrder para que pueda eliminar pedidos.*/}
+          </div>
         </div>
       </div>
     </>
