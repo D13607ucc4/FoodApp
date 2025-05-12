@@ -1,5 +1,6 @@
 import React from "react";
 import "./foodItem.css";
+import { Link } from 'react-router-dom'
 
 function FoodItem({ comida, addOrder, orderCantidad }) {
   return (
@@ -20,9 +21,10 @@ function FoodItem({ comida, addOrder, orderCantidad }) {
           <span>{orderCantidad} left</span>
         )}
       </div>
-      <div className="food-bottom">
-        {/*Copio el objeto comida para que no me mande la referencia y haya pedo con los estados*/}
-      </div>
+     
+      <Link to={`${comida.id}`}>
+        detalles
+      </Link>
     </button>
   );
 }
