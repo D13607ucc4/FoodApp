@@ -14,6 +14,22 @@
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 }
 
+.DetailCardButtons {
+  margin: 40px;
+  background-color: #fff;
+  border: 2px solid #d1d1d1;
+  border-radius: 10px;
+  width: 600px;
+  height: 50px;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
 .food-item:hover {
   cursor: pointer;
   transform: scale(1.05);
@@ -25,4 +41,63 @@
 
 .food-icon {
   font-size: 100px;
+}
+
+.display-cantidad {
+  font-size: 1.4em; /* Tamaño de fuente para el número */
+  font-weight: bold; /* Negrita para el número */
+  color: #555; /* Color de texto para el número */
+  min-width: 30px; /* Asegura un ancho mínimo para que el número no se comprima */
+  text-align: center; /* Centra el número si el ancho es mayor */
+}
+
+
+.quantity-btn {
+  background-color: #f0f0f0; /* Un gris claro para el fondo */
+  border: 1px solid #d0d0d0; /* Un borde ligeramente más oscuro */
+  color: #333; /* Color de texto oscuro */
+  font-size: 1.5em; /* Tamaño grande para el símbolo (+/-) */
+  width: 40px; /* Ancho fijo para hacerlos más cuadrados/circulares */
+  height: 40px; /* Alto fijo, igual al ancho */
+  border-radius: 50%; /* Esto los hace perfectamente circulares */
+  cursor: pointer;
+  display: flex; /* Usar flex para centrar el contenido (el símbolo) */
+  justify-content: center; /* Centrar horizontalmente el símbolo */
+  align-items: center; /* Centrar verticalmente el símbolo */
+  transition: background-color 0.2s ease, border-color 0.2s ease; /* Transición suave para hover */
+}
+
+.quantity-btn:hover {
+  background-color: #e0e0e0; /* Un poco más oscuro al pasar el ratón */
+  border-color: #b0b0b0; /* Borde más oscuro al pasar el ratón */
+}
+
+.quantity-btn:active {
+  background-color: #d0d0d0; /* Color al hacer click */
+  border-color: #a0a0a0;
+}
+
+
+.add-to-cart-btn {
+  background-color: #007bff; /* Un azul atractivo */
+  color: white; /* Texto blanco */
+  padding: 12px 25px; /* Relleno generoso para un botón clicable */
+  border: none; /* Sin borde */
+  border-radius: 25px; /* Bordes bien redondeados para el botón principal */
+  font-size: 1.1em; /* Tamaño de fuente para el texto */
+  font-weight: bold; /* Texto en negrita */
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease; /* Transición para hover y click */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para darle profundidad */
+}
+
+.add-to-cart-btn:hover {
+  background-color: #0056b3; /* Azul más oscuro al pasar el ratón */
+  transform: translateY(-1px); /* Efecto de "levantar" ligeramente */
+}
+
+.add-to-cart-btn:active {
+  background-color: #004085; /* Azul aún más oscuro al hacer click */
+  transform: translateY(0); /* Vuelve a la posición original */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra más pequeña al hacer click */
 }

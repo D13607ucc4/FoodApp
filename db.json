@@ -5,21 +5,21 @@
       "img": "🍔",
       "name": "Hamburguesa",
       "price": 157,
-      "stock": 0
+      "stock": 6
     },
     {
       "id": "2",
       "img": "🍕",
       "name": "Pizza",
       "price": 189,
-      "stock": 0
+      "stock": 3
     },
     {
       "id": "3",
       "img": "🍣",
       "name": "Sushi",
       "price": 132,
-      "stock": 1
+      "stock": 8
     },
     {
       "id": "4",
