@@ -1,30 +1,43 @@
 import { useState, useEffect } from "react";
 import Receipt from "../components/receipt";
 import FoodContainer from "../components/foodContainer";
-import { useTheme } from "../context/ThemeContext";
+import { useTheme } from "../context/themeContext";
 
 function HomePage() {
   const [orders, setOrders] = useState([]); //Creo una variable de estado orders, que empieza como un array vacío.
   // const [stock, setStock] = useState([]);
   const [comidas, setComidas] = useState([]);
 
-  const { darkMode, toggleHandle } = useTheme()
+  const { darkMode, toggleHandle } = useTheme();
 
-  const fetchComidas = () => {
-    fetch("http://localhost:3000/comidas")
-      .then(res => {
-        if (!res.ok) throw new Error("Error al obtener comidas");
-        return res.json();
-      })
-      .then(data => setComidas(data))
-      .catch(err => console.error("Error al cargar comidas:", err));
-  };
+  // const fetchComidas = () => {
+  //   fetch("http://localhost:3000/comidas")
+  //     .then((res) => {
+  //       if (!res.ok) throw new Error("Error al obtener comidas");
+  //       return res.json();
+  //     })
+  //     .then((data) => setComidas(data))
+  //     .catch((err) => console.error("Error al cargar comidas:", err));
+  // };
 
   useEffect(() => {
     fetchComidas();
   }, []);
 
-  console.log("me renderizo..")
+  const fetchComidas = async () => {
+    try {
+      const res = await fetch("http://localhost:3000/comidas");
+      if (!res.ok) {
+        throw new Error("Error al obtener comidas");
+      }
+      const data = await res.json();
+      setComidas(data);
+    } catch (err) {
+      console.error("Error al cargar comidas:", err);
+    }
+  };
+
+  console.log("me renderizo..");
 
   // Orders contendrá los pedidos que se vayan haciendo. setOrders se usa para actualizar el estado de orders.
 
@@ -42,7 +55,7 @@ function HomePage() {
           //Si ya existe actualiza la cantidad del pedido existente
           return prevOrders.map((order, index) => {
             if (index === existingOrderIndex) {
-              return { ...order, quantity: order.quantity + 1 }; //Copio el objeto order y le sumo 1 a la cantidad. Esto no muta el estado porque crea un nuevo objeto.
+              return { ...order, quantity: order.quantity + 1 };
             }
             return order; //El resto de los objetos los dejo igual.
           });
@@ -76,29 +89,27 @@ function HomePage() {
   };
 
   const finalizarCompra = () => {
-    const updates = orders.map(order => {
-      const comida = comidas.find(c => c.id === order.id);
+    const updates = orders.map((order) => {
+      const comida = comidas.find((c) => c.id === order.id);
       const nuevoStock = comida.stock - order.quantity;
-  
+
       return fetch(`http://localhost:3000/comidas/${order.id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ stock: nuevoStock }),
+        body: JSON.stringify({ stock: nuevoStock })
       });
     });
-  
-    Promise.all(updates)
-    .then(() => {
-      fetchComidas(); 
-      setOrders([]);
-    })
-    .catch(err => {
-      console.error("Error al finalizar compra:", err);
-    });
-  }
 
- 
-   
+    Promise.all(updates)
+      .then(() => {
+        fetchComidas();
+        setOrders([]);
+      })
+      .catch((err) => {
+        console.error("Error al finalizar compra:", err);
+      });
+  };
+
   return (
     <>
       <div className={darkMode ? "dark-mode" : "light-mode"}>
@@ -128,10 +139,7 @@ function HomePage() {
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default HomePage
-
-
-
+export default HomePage;

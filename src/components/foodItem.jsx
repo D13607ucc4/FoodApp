@@ -1,10 +1,16 @@
 import React from "react";
 import "./foodItem.css";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
+import { useTheme } from "../context/themeContext";
 
 function FoodItem({ comida, addOrder, orderCantidad }) {
+  const { darkMode } = useTheme();
   return (
-    <button className="food-item" onClick={() => addOrder(comida)} disabled={orderCantidad === 0}>
+    <button
+      className={`food-item ${darkMode ? "dark-mode" : "light-mode"}`}
+      onClick={() => addOrder(comida)}
+      disabled={orderCantidad === 0}
+    >
       <div>
         <span className="food-icon">{comida.img}</span>
       </div>
@@ -21,10 +27,8 @@ function FoodItem({ comida, addOrder, orderCantidad }) {
           <span>{orderCantidad} left</span>
         )}
       </div>
-     
-      <Link to={`${comida.id}`}>
-        detalles
-      </Link>
+
+      <Link to={`${comida.id}`}>detalles</Link>
     </button>
   );
 }

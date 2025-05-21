@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import DetailedCard from "../components/detailedCard"
+import { useParams, Link } from "react-router-dom";
+import DetailedCard from "../components/detailedCard";
 
 function ProductPageDetail() {
   const params = useParams();
@@ -27,7 +27,8 @@ function ProductPageDetail() {
 
   return (
     <>
-      <DetailedCard product={product} params={params}/>
+      <Link to={`/home`}>Volver a todos los productos</Link>
+      <DetailedCard product={product} params={params} />
     </>
   );
 }

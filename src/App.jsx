@@ -24,12 +24,12 @@ function App() {
     /* Ejemplo de como debemos hacer las rutas */
   }
   return (
-      <>
+    <>
       <Header />
       <Routes>
         <Route path="/*" element={<Navigate replace to="/home" />} />
 
-        <Route path="/home/*" element={<HomePage />} />
+        <Route path="/home" element={<HomePage />} />
 
         <Route path="/home/:productId" element={<ProductPageDetail />} />
       </Routes>

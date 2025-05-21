@@ -12,14 +12,14 @@
       "img": "🍕",
       "name": "Pizza",
       "price": 189,
-      "stock": 3
+      "stock": 0
     },
     {
       "id": "3",
       "img": "🍣",
       "name": "Sushi",
       "price": 132,
-      "stock": 6
+      "stock": 1
     },
     {
       "id": "4",

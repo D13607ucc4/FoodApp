@@ -1,4 +1,6 @@
 import React from "react";
+import "./detailedCard.css";
+
 
 function DetailedCard({ product, params }) {
   return (
