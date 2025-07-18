@@ -2,6 +2,7 @@ import HomePage from "./pages/homePage";
 import { Routes, Route, Navigate, Link } from "react-router-dom";
 import "./App.css";
 import ProductPageDetail from "./pages/productPageDetail";
+import AddFoodPage from "./pages/addFoodPage";
 import Header from "./components/header";
 
 /*
@@ -27,11 +28,13 @@ function App() {
     <>
       <Header />
       <Routes>
-        <Route path="/*" element={<Navigate replace to="/home" />} />
+        <Route path="/*" element={<Navigate replace to="/food" />} />
 
-        <Route path="/home" element={<HomePage />} />
+        <Route path="/food" element={<HomePage />} />
 
-        <Route path="/home/:productId" element={<ProductPageDetail />} />
+        <Route path="/food/:productId" element={<ProductPageDetail />} />
+
+        <Route path="/addFood" element={<AddFoodPage />} />
       </Routes>
     </>
   );

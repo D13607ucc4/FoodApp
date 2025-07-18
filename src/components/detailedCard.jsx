@@ -3,7 +3,7 @@ import "./detailedCard.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function DetailedCard({ product, params }) {
+function DetailedCard({ product, productId }) {
   const [cantidad, setCantidad] = useState(1);
   const navigate = useNavigate();
 
@@ -39,7 +39,7 @@ function DetailedCard({ product, params }) {
       }
 
       console.log("Stock actualizado exitosamente.");
-      navigate("/home");
+      navigate("/food");
     } catch (error) {
       console.error("Hubo un problema con la operación fetch:", error);
       throw error;
@@ -53,7 +53,7 @@ function DetailedCard({ product, params }) {
         <span style={{ fontSize: "3rem" }}>{product.img}</span>
         <span>${product.price}</span>
         <p>Product Stock: {product.stock}</p>
-        <p>Product Code: {params.productId}</p>
+        <p>Product Code: {productId}</p>
       </div>
       <div className="DetailCardButtons">
         <button

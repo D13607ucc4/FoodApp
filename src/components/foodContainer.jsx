@@ -3,7 +3,6 @@ import FoodItem from "./foodItem";
 import "./foodContainer.css";
 
 function FoodContainer({ addOrder, comidas, orders }) {
-
   return (
     <>
       {comidas.map((comida) => (

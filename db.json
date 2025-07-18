@@ -5,21 +5,21 @@
       "img": "🍔",
       "name": "Hamburguesa",
       "price": 157,
-      "stock": 6
+      "stock": 8
     },
     {
       "id": "2",
       "img": "🍕",
       "name": "Pizza",
       "price": 189,
-      "stock": 3
+      "stock": 20
     },
     {
       "id": "3",
       "img": "🍣",
       "name": "Sushi",
       "price": 132,
-      "stock": 8
+      "stock": 9
     },
     {
       "id": "4",
@@ -47,14 +47,14 @@
       "img": "🍩",
       "name": "Dona",
       "price": 123,
-      "stock": 5
+      "stock": 8
     },
     {
       "id": "8",
       "img": "🥪",
       "name": "Sándwich",
       "price": 144,
-      "stock": 1
+      "stock": 4
     },
     {
       "id": "9",
@@ -69,6 +69,20 @@
       "name": "Papas fritas",
       "price": 116,
       "stock": 6
+    },
+    {
+      "id": "70de",
+      "img": "a",
+      "name": "a",
+      "price": 22,
+      "stock": 22
+    },
+    {
+      "id": "1d52",
+      "img": "b",
+      "name": "sss",
+      "price": 23,
+      "stock": 11
     }
   ],
   "Orders": []

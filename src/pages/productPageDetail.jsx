@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import DetailedCard from "../components/detailedCard";
 
 function ProductPageDetail() {
-  const params = useParams();
+  const { productId } = useParams();
 
   const [product, setProduct] = useState(null);
 
@@ -11,7 +11,7 @@ function ProductPageDetail() {
     const fetchProducts = async () => {
       try {
         const fetching = await fetch(
-          `http://localhost:3000/comidas/${params.productId}`
+          `http://localhost:3000/comidas/${productId}`
         );
         const res = await fetching.json();
         setProduct(res);
@@ -21,14 +21,13 @@ function ProductPageDetail() {
     };
 
     fetchProducts();
-  }, [params.productId]);
+  }, [productId]);
 
   if (!product) return <p>Loading product...</p>;
 
   return (
     <>
-      <Link to={`/home`}>Volver a todos los productos</Link>
-      <DetailedCard product={product} params={params} />
+      <DetailedCard product={product} productId={productId} />
     </>
   );
 }
